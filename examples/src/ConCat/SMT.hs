@@ -144,8 +144,10 @@ class EvalE a where
   evalE = (fmap.fmap) abst evalE
 
 evalEs :: EvalE a => Model -> [E] -> Z3 a
-evalEs model es = do (a,[]) <- runStateT (evalE model) es
-                     return a
+evalEs model es = do p <- runStateT (evalE model) es
+                     case p of
+                       (a, []) -> return a
+                       (_, st) -> error ("State is not empty: " ++ show st)
 
 -- type EvalAst m a = Model -> E -> m (Maybe a)
 
@@ -154,7 +156,7 @@ evalPrim ev f m =
   do es <- get
      case es of
        []      -> fail "evalPrim: exhausted ASTs"
-       (e:es') -> do Just a' <- lift (ev m e)
+       (e:es') -> do a' <- fmap (maybe (error "no value") id) (lift (ev m e))
                      put es'
                      return (f a')
 
