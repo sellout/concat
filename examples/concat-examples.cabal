@@ -108,6 +108,7 @@ library
                        ConCat.Chain
                        ConCat.StackVM
                        ConCat.Distribution
+                       ConCat.Miscellany
   if flag(smt)
     exposed-modules: ConCat.SMT
   ghc-options:      -O2
@@ -122,7 +123,6 @@ Test-Suite misc-examples
   default-language: Haskell98
   hs-Source-Dirs:   test
   main-is:          Examples.hs
-  other-modules:    Miscellany
   Build-Depends:    base<5
                   , Cabal >= 1.24.0.0
                   , ghc-prim
@@ -151,7 +151,6 @@ Test-Suite misc-trace
   default-language: Haskell98
   hs-Source-Dirs:   test
   main-is:          Examples.hs
-  other-modules:    Miscellany
   Build-Depends:    base<5
                   , Cabal >= 1.24.0.0
                   , ghc-prim
@@ -194,7 +193,7 @@ Test-Suite gold-tests
   default-language: Haskell98
   hs-Source-Dirs:   test
   main-is:          GoldTests.hs
-  other-modules:    BasicTests, Miscellany, Utils
+  other-modules:    BasicTests, Utils
   Build-Depends:    base<5
                   , Cabal >= 1.24.0.0
                   , ghc-prim
