@@ -29,6 +29,7 @@ install:
 
 script:
 - nix-shell --run "$STACK build"
-- if [ "x$TEST" = "x--test" ]; then nix-shell --run "$STACK build --no-run-tests :misc-examples :graphics-examples :hardware-examples"; fi
+- if [ "x$TEST" = "x--test" ]; then nix-shell --run "$STACK build --no-run-tests :misc-examples :graphics-examples"; fi
+- if [ "x$TEST" = "x--test" ]; then nix-shell --run "$STACK test :hardware-examples"; fi
 - if [ "x$TEST" = "x--test" ]; then nix-shell --run "$STACK build --no-run-tests :gold-tests"; fi
 - if [ "x$TEST" = "x--test" ]; then nix-shell --run "$STACK test :gold-tests || $ALLOW_GOLD_TEST_FAILURES"; fi
