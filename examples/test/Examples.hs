@@ -397,18 +397,18 @@ main = sequence_ [
   , runSynCirc "horner"      $ toCcc $ horner @R [1,3,5]
   , runSynCirc "cos-2xx"     $ toCcc $ \ x -> cos (2 * x * x) :: R
 
-  -- -- Automatic differentiation
-  -- , runSynCircDers "add"     $ uncurry ((+) @R)
-  -- , runSynCircDers "fst"     $ fst @R @R
-  -- , runSynCircDers "twice"   $ twice @R
-  -- , runSynCircDers "sqr"     $ sqr @R
-  -- , runSynCircDers "sin"     $ sin @R
-  -- , runSynCircDers "cos"     $ cos @R
-  -- , runSynCircDers "magSqr"  $ magSqr  @R
-  -- , runSynCircDers "cos-2x"  $ \ x -> cos (2 * x) :: R
-  -- , runSynCircDers "cos-2xx" $ \ x -> cos (2 * x * x) :: R
-  -- , runSynCircDers "cos-xpy" $ \ (x,y) -> cos (x + y) :: R
-  -- , runSynCircDers "cos-xpytz" $ \ (x,y,z) -> cos (x + y * z) :: R
+  -- Automatic differentiation
+  , runSynCircDers "add"     $ uncurry ((+) @R)
+  , runSynCircDers "fst"     $ fst @R @R
+  , runSynCircDers "twice"   $ twice @R
+  , runSynCircDers "sqr"     $ sqr @R
+  , runSynCircDers "sin"     $ sin @R
+  , runSynCircDers "cos"     $ cos @R
+  , runSynCircDers "magSqr"  $ magSqr  @R
+  , runSynCircDers "cos-2x"  $ \ x -> cos (2 * x) :: R
+  , runSynCircDers "cos-2xx" $ \ x -> cos (2 * x * x) :: R
+  , runSynCircDers "cos-xpy" $ \ (x,y) -> cos (x + y) :: R
+  , runSynCircDers "cos-xpytz" $ \ (x,y,z) -> cos (x + y * z) :: R
 
   -- , runSynCirc "cos-xpy-adr-802" $ toCcc $ andGradR $ \ (x,y) -> cos (x + y) :: R
 
