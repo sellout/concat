@@ -86,7 +86,7 @@ main = sequence_
   -- TODO: Understand why only the second alternative, below, works.
   --       (The other two cause a compilation time-out error.)
   -- , runVerilog' "fft_fc_octet" $ \ ( fc :: ( ((Pair :.: Pair) :.: (Pair :.: Pair)) (Complex Float) )) -> fft fc
-  , runVerilog' "fft_fc_rb3" $ fft @(RBin N3) @Float
+  -- , runVerilog' "fft_fc_rb3" $ fft @(RBin N3) @Float
   -- , runVerilog' "fft_fc_rb3" $ fft @((Pair :.: Pair) :.: (Pair :.: Pair)) @Float
   -- , runCirc "fft-rb3" $ ccc $ fft @(RBin N3) @Double
   ]
