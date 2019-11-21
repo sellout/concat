@@ -21,15 +21,12 @@ matrix:
   - compiler: "ghc-head"
 
 install:
-- TEST=${TEST---test}
 - ALLOW_GOLD_TEST_FAILURES=${ALLOW_GOLD_TEST_FAILURES-false}
 - STACK="stack --nix --no-terminal --skip-ghc-check $STACK_OPTIONS"
-- nix-shell --run "$STACK build $TEST --only-dependencies"
 - nix-shell --run "$STACK build --only-dependencies"
 
 script:
 - nix-shell --run "$STACK build"
-- if [ "x$TEST" = "x--test" ]; then nix-shell --run "$STACK build --no-run-tests :misc-examples :graphics-examples"; fi
-- if [ "x$TEST" = "x--test" ]; then nix-shell --run "$STACK test :hardware-examples"; fi
-- if [ "x$TEST" = "x--test" ]; then nix-shell --run "$STACK build --no-run-tests :gold-tests"; fi
-- if [ "x$TEST" = "x--test" ]; then nix-shell --run "$STACK test :gold-tests || $ALLOW_GOLD_TEST_FAILURES"; fi
+- nix-shell --run "$STACK build --no-run-tests :misc-examples :graphics-examples :gold-tests"
+- nix-shell --run "$STACK test :hardware-examples"
+- nix-shell --run "$STACK test :gold-tests || $ALLOW_GOLD_TEST_FAILURES"
