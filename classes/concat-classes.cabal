@@ -24,7 +24,8 @@ library
   hs-source-dirs:      src
   include-dirs:        src
   install-includes:    ConCat/Ops.inc
-  build-depends:       base >=4.9
+  build-depends:       array
+                     , base >=4.9
                      , constraints >= 0.8
                      , containers >= 0.5.7.1
                      , ghc-prim >= 0.5.0.0
