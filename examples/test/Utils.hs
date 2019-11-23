@@ -4,10 +4,10 @@ module Utils where
 
 import qualified ConCat.AltCat as A
 import           ConCat.Circuit (mkGraph, graphDot)
+import           ConCat.Miscellany (GO, EC)
 import           ConCat.Syntactic (render)
 import qualified Data.ByteString.Lazy.Char8 as BS
 import           Data.Semigroup ((<>))
-import           Miscellany (GO, EC)
 import           Test.Tasty (TestTree, testGroup)
 import           Test.Tasty.Golden
 

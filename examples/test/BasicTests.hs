@@ -26,6 +26,7 @@ import           ConCat.GAD
 import           ConCat.Incremental
 import           ConCat.Interval
 import           ConCat.Misc ((:*), (:+), R, C, Unop, Binop, magSqr, sqr, unzip)
+import           ConCat.Miscellany hiding (runSynCirc,runSynCircDers)
 import           ConCat.Nat
 import           ConCat.Orphans ()
 import           ConCat.RAD
@@ -40,7 +41,6 @@ import           Data.Pointed
 import           Data.Vector.Sized (Vector)
 import           GHC.Generics hiding (C, D, R)
 import           GHC.TypeLits ()
-import           Miscellany hiding (runSynCirc,runSynCircDers)
 import           Prelude hiding (unzip, zip, zipWith)
 import           Test.Tasty (TestTree, testGroup)
 import           Utils
