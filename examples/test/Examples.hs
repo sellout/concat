@@ -183,7 +183,7 @@ import Control.Newtype.Generics (Newtype(..))
 -- Experiments
 import GHC.Exts (Coercible,coerce)
 
-import Miscellany
+import ConCat.Miscellany
 
 main :: IO ()
 main = sequence_ [

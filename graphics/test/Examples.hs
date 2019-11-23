@@ -46,6 +46,7 @@ import qualified ConCat.RunCircuit as RC
 import ConCat.Syntactic (Syn,render)
 import ConCat.AltCat (Ok2,toCcc,(:**:)(..))
 import qualified ConCat.AltCat as A
+import ConCat.Miscellany
 
 import ConCat.Rebox () -- necessary for reboxing rules to fire
 
@@ -105,17 +106,6 @@ main = sequence_
 --------------------------------------------------------------------}
 
 type GO a b = (GenBuses a, Ok2 (:>) a b)
-
-type EC = Syn :**: (:>)
-
-runSyn :: Syn a b -> IO ()
-runSyn syn = putStrLn ('\n' : render syn)
-
-runCirc :: GO a b => String -> (a :> b) -> IO ()
-runCirc nm circ = RC.run nm [] circ
-
-runSynCirc :: GO a b => String -> EC a b -> IO ()
-runSynCirc nm (syn :**: circ) = runSyn syn >> runCirc nm circ
 
 runH :: (GenBuses a)
      => String -> Widgets a -> (a :> ImageC) -> IO ()
