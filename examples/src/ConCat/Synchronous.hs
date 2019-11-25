@@ -184,9 +184,7 @@ instance (CartCon con, RepCat (->) a r) => RepCat (Mealy con) a r where
 --         Un-determined variable: r
 --         Using UndecidableInstances might help
 
-{--------------------------------------------------------------------
-    Other operations
---------------------------------------------------------------------}
+-- * Other operations
 
 delay :: con a => a -> Mealy con a a
 delay = Mealy swap
@@ -198,9 +196,7 @@ scanl op = Mealy (\ (a,b) -> dup (b `op` a))
 scan :: (Monoid m, con m) => Mealy con m m
 scan = scanl mappend mempty
 
-{--------------------------------------------------------------------
-    
---------------------------------------------------------------------}
+-- *
 
 type Stream = []  -- infinite-only. To do: use real streams.
 
@@ -223,9 +219,7 @@ fixSX (StreamX h) = StreamX (\ as -> fix (\ bs -> h (as `zip` bs)))
 
 
 
-{--------------------------------------------------------------------
-    Examples
---------------------------------------------------------------------}
+-- * Examples
 
 fibL2 :: Num a => [a]
 fibL2 = 0 : 1 : zipWith (+) fibL2 (tail fibL2)

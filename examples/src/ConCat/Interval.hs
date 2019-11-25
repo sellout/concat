@@ -174,9 +174,7 @@ minMax4 a b c d = minMax2 p q
 instance (Coercible (Iv a) (Iv b)) => CoerceCat IF a b where
   coerceC = IF coerceC
 
-{--------------------------------------------------------------------
-    ccc driver
---------------------------------------------------------------------}
+-- * ccc driver
 
 ivFun :: (a -> b) -> (Iv a -> Iv b)
 ivFun _ = error "ivFun called"

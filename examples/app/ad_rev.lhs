@@ -64,15 +64,11 @@ import ConCat.AD
 \begin{code}
 -- #define DEBUG
 
-{----------------------------------------------------------------------
-  Constant definitions.
-----------------------------------------------------------------------}
+-- * Constant definitions.
 
 mdFilename = "out/ad_rev.md"
 
-{----------------------------------------------------------------------
-  Command line options defintions.
-----------------------------------------------------------------------}
+-- * Command line options defintions.
 
 data Opts w = Opts
     { dummy :: w ::: Maybe Bool <?>
@@ -82,9 +78,7 @@ data Opts w = Opts
 
 instance ParseRecord (Opts Wrapped)
 
-{----------------------------------------------------------------------
-  main()
-----------------------------------------------------------------------}
+-- * main()
 
 main :: IO ()
 main = do

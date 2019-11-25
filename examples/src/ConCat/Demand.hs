@@ -42,9 +42,7 @@ data Demand :: * -> * where
 
 deriving instance Show (Demand a)
 
-{--------------------------------------------------------------------
-    Semantics
---------------------------------------------------------------------}
+-- * Semantics
 
 -- | Semantic function. Extract just the demanded information.
 demand :: Demand a -> Unop a
@@ -85,9 +83,7 @@ complementD (ra :+++ rb) = complementD ra +: complementD rb
 complementD (ra :~> rb)  = complementD ra >: complementD rb
 complementD AllD         = NoneD
 
-{--------------------------------------------------------------------
-    Smart constructors
---------------------------------------------------------------------}
+-- * Smart constructors
 
 -- | Product demand
 (*:) :: Demand a -> Demand b -> Demand (a :* b)
@@ -108,9 +104,7 @@ combineD  _   NoneD NoneD = NoneD
 combineD  _   AllD  AllD  = AllD
 combineD (@@) ra    rb    = ra @@ rb
 
-{--------------------------------------------------------------------
-    Construction & destruction
---------------------------------------------------------------------}
+-- * Construction & destruction
 
 pairD :: (Demand a :* Demand b) -> Demand (a :* b)
 pairD = uncurry (*:)
@@ -156,9 +150,7 @@ mergeD = uncurry lubD . unpairD
 -- mergeD (ra :*** rb) = ra `lubD` rb
 -- mergeD AllD         = AllD
 
-{--------------------------------------------------------------------
-    Lattice
---------------------------------------------------------------------}
+-- * Lattice
 
 -- Demands form a lattice with bottom = NoneD, top = AllD, and lub & glb as
 -- follows. The semantic function preserves lattice structure (is a lattice
@@ -189,9 +181,7 @@ a          `glbD` AllD         = a
 -- The catch-all cases in lubD and glbD are sum/product.
 -- Impossible, but GHC doesn't realize. :(
 
-{--------------------------------------------------------------------
-    Demand flow arrow
---------------------------------------------------------------------}
+-- * Demand flow arrow
 
 infixr 1 :-?
 

@@ -134,10 +134,7 @@ Test-Suite misc-examples
                   , concat-classes
                   , concat-plugin
                   , concat-examples
-                  , ghc-prim
                   , integer-gmp
-                  , distributive, adjunctions
-                  , constraints >= 0.8
                   -- Array/vector experiments
                   , finite-typelits, vector-sized >= 1.0.0.0
   ghc-options:      -O2
@@ -162,11 +159,7 @@ Test-Suite misc-trace
                   , concat-classes
                   , concat-plugin
                   , concat-examples
-                  , ghc-prim
                   , integer-gmp
-                  , keys
-                  , distributive, adjunctions
-                  , constraints >= 0.8
                   -- Array/vector experiments
                   , finite-typelits, vector-sized
   ghc-options:      -O2
@@ -205,10 +198,7 @@ Test-Suite gold-tests
                   , concat-classes
                   , concat-plugin
                   , concat-examples
-                  , ghc-prim
                   , integer-gmp
-                  , distributive, adjunctions
-                  , constraints >= 0.8
                   , bytestring
                   , tasty
                   , tasty-golden

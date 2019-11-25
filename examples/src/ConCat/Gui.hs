@@ -130,9 +130,7 @@ instance ClosedCat Gui where
   curry (Gui (PairI' a b) c) = Gui a (b :--> c)
   uncurry (Gui a (b ::-> c)) = Gui (PairI a b) c
 
-{--------------------------------------------------------------------
-    Instantiating GUIs --- a sketch for now
---------------------------------------------------------------------}
+-- * Instantiating GUIs --- a sketch for now
 
 -- | Consumer / call-back / setter
 type OI c = c -> IO ()
