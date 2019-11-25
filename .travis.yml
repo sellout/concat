@@ -27,6 +27,6 @@ install:
 
 script:
 - nix-shell --run "$STACK build"
-- nix-shell --run "$STACK build --no-run-tests :misc-examples :graphics-examples :gold-tests"
+- nix-shell --run "$STACK build --no-run-tests :misc-examples :graphics-examples :gold-tests --flag concat-examples:smt"
 - nix-shell --run "$STACK test :hardware-examples"
 - nix-shell --run "$STACK test :gold-tests || $ALLOW_GOLD_TEST_FAILURES"
