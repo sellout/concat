@@ -28,9 +28,7 @@ import ConCat.Free.LinearRow
 import ConCat.Orphans ()
 import ConCat.Category (dup)
 
-{--------------------------------------------------------------------
-    Minimization via gradient descent
---------------------------------------------------------------------}
+-- * Minimization via gradient descent
 
 maximize, minimize :: (HasV R a, Zip (V R a), Eq a) => R -> D R a R -> a -> a
 maximize = (fmap.fmap.fmap) fst maximizeN
@@ -66,9 +64,7 @@ maximizeL, minimizeL :: (HasV R a, Zip (V R a)) => R -> D R a R -> a -> [a]
 maximizeL gamma = chaseL gamma . gradientD
 minimizeL = maximizeL . negate
 
-{--------------------------------------------------------------------
-    Fixed points
---------------------------------------------------------------------}
+-- * Fixed points
 
 -- Fixed point with comparision
 fixBy :: (a -> a -> Bool) -> Unop (Unop a)
@@ -93,9 +89,7 @@ fixN = fixByN (==)
 fixEq :: Eq a => Unop (Unop a)
 fixEq = fixBy (==)
 
-{--------------------------------------------------------------------
-    Vector operations
---------------------------------------------------------------------}
+-- * Vector operations
 
 -- The vector operations in VectorSpace are on free vector spaces (f s for
 -- functor f and scalar field s), so define counterparts on regular values.

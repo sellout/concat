@@ -78,9 +78,7 @@ step f ab = gradF @s (negate . sqErr ab . f)
 
 -- TODO: move Num s into IsScalar s, and remove Num s uses where redundant.
 
-{--------------------------------------------------------------------
-    Miscellany
---------------------------------------------------------------------}
+-- * Miscellany
 
 negateV' :: forall s a. (HasV s a, Functor (V s a), Num s) => Unop a
 negateV' = onV @s negateV

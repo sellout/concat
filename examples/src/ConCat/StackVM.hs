@@ -27,9 +27,7 @@ import ConCat.Misc ((:*),(:+))
 import qualified ConCat.Category as C
 import ConCat.AltCat
 
-{--------------------------------------------------------------------
-    Stack functions (for specification)
---------------------------------------------------------------------}
+-- * Stack functions (for specification)
 
 newtype StackFun a b = SF (forall z. a :* z -> b :* z)
 
@@ -136,9 +134,7 @@ instance ClosedCat StackFun where
   {-# INLINE curry #-}
   {-# INLINE uncurry #-}
 
-{--------------------------------------------------------------------
-    Stack programs
---------------------------------------------------------------------}
+-- * Stack programs
 
 data Prim :: * -> * -> * where
   Swap :: Prim (a :* b) (b :* a)
@@ -297,9 +293,7 @@ instance Num a => NumCat StackProg a where
   mulC    = primProg Mul
   powIC   = primProg PowI
 
-{--------------------------------------------------------------------
-    Relate StackProg to StackFun
---------------------------------------------------------------------}
+-- * Relate StackProg to StackFun
 
 -- The semantic homomorphism used to derive instances for StackProg.
 progFun :: StackProg a b -> StackFun a b
@@ -311,17 +305,13 @@ evalProg = evalStackFun . progFun
 -- evalProg (SP ops) = rcounit . evalStackOps ops . runit
 -- evalProg (SP ops) a = fst (evalStackOps ops (a,()))
 
-{--------------------------------------------------------------------
-    Miscellany
---------------------------------------------------------------------}
+-- * Miscellany
 
 data Exists2 k = forall a b. Exists2 (a `k` b)
 
 instance Show2 k => Show (Exists2 k) where show (Exists2 f) = show2 f
 
-{--------------------------------------------------------------------
-    Examples
---------------------------------------------------------------------}
+-- * Examples
 
 -- evalProg t1 (7,5) --> -12
 t1 :: StackProg (Int :* Int) Int

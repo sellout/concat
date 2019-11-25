@@ -33,9 +33,7 @@ import ConCat.GAD
 -- derivatives.
 type D s = GD (L s)
 
-{--------------------------------------------------------------------
-    Differentiation interface
---------------------------------------------------------------------}
+-- * Differentiation interface
 
 andDer :: forall s a b . (a -> b) -> (a -> b :* L s a b)
 andDer = andDeriv

@@ -62,9 +62,7 @@ import ConCat.AltCat (id,(.),(***),(+++),OkFunctor(..))
 
 -- TODO: lots of INLINE pragmas
 
-{--------------------------------------------------------------------
-    Misc
---------------------------------------------------------------------}
+-- * Misc
 
 infix 1 |-
 -- | A synonym for '(:-)' but with a looser fixity.
@@ -98,9 +96,7 @@ axiom | Refl <- unsafeEqual @q @'True = Sub Dict
 
 type KnownNat2 m n = (KnownNat m, KnownNat n)
 
-{--------------------------------------------------------------------
-    Comparisons with evidence
---------------------------------------------------------------------}
+-- * Comparisons with evidence
 
 -- | Result of 'compare' with evidence
 data CompareEv u v = (u < v) => CompareLT
@@ -153,9 +149,7 @@ leEv = case compareEv @u @v of
          CompareGT -> LeF
 {-# INLINE leEv #-}
 
-{--------------------------------------------------------------------
-    Finite
---------------------------------------------------------------------}
+-- * Finite
 
 data Finite n = forall a. (KnownNat a, a < n) => Finite (Proxy a)
 
@@ -248,9 +242,7 @@ finProd = prodToFin :<-> finToProd
 
 -- TODO: define foldMap
 
-{----------------------------------------------------------------------
-   A class of types with known finite representations.
-----------------------------------------------------------------------}
+-- * A class of types with known finite representations.
 
 type KnownCard a = KnownNat (Card a)
 
@@ -295,9 +287,7 @@ instance (HasFin a, HasFin b) => HasFin (a :* b) where
 --   type Card (a :^ b) = Card a ^ Card b
 --   finI = finExp . (liftFin :<-> inFin)
 
-{--------------------------------------------------------------------
-    Sized vectors
---------------------------------------------------------------------}
+-- * Sized vectors
 
 newtype Vector (n :: Nat) a = Vector (UV.Vector a)
   deriving (Functor, Applicative, Show)
@@ -341,9 +331,7 @@ slice w (Vector src) = Vector (UV.slice (finInt w) (int @n) src)
 vecSplitProd :: forall m n a. KnownNat n => Vector (m * n) a -> Vector m (Vector n a)
 vecSplitProd _src = undefined -- tabulate $ \ j -> 
 
-{----------------------------------------------------------------------
-  Domain-typed "arrays"
-----------------------------------------------------------------------}
+-- * Domain-typed "arrays"
 
 newtype Arr a b = Arr (Vector (Card a) b)
 
