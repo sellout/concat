@@ -33,9 +33,7 @@
 
 -- #define GenericPowFFT
 
-----------------------------------------------------------------------
 -- | Generic FFT
-----------------------------------------------------------------------
 
 module ConCat.FFT
   ( dft, FFT(..), DFTTy, genericFft, GFFT
@@ -66,9 +64,7 @@ import ConCat.Scan (LScan,lproducts)
 import ConCat.Pair
 import ConCat.Free.LinearRow (($*))
 
-{--------------------------------------------------------------------
-    DFT
---------------------------------------------------------------------}
+-- * DFT
 
 type AS  h = (Pointed h, Zip h, LScan h)
 type ASZ h = (AS h, Sized h)
@@ -97,9 +93,7 @@ omega n = cis (- 2 * pi / fromIntegral n)
 -- omega n = exp (- 2 * (0:+1) * pi / fromIntegral n)
 {-# INLINE omega #-}
 
-{--------------------------------------------------------------------
-    FFT
---------------------------------------------------------------------}
+-- * FFT
 
 type DFTTy f = forall a. RealFloat a => f (Complex a) -> FFO f (Complex a)
 
@@ -137,9 +131,7 @@ powers = fst . lproducts . point
 -- TODO: Consolidate with powers in TreeTest and rename sensibly. Maybe use
 -- "In" and "Ex" suffixes to distinguish inclusive and exclusive cases.
 
-{--------------------------------------------------------------------
-    Generic support
---------------------------------------------------------------------}
+-- * Generic support
 
 instance FFT Par1 where
   type FFO Par1 = Par1
@@ -227,9 +219,7 @@ type GFFT f = (Generic1 f, Generic1 (FFO f), FFT (Rep1 f), FFO (Rep1 f) ~ Rep1 (
 
 -- Perhaps dftT isn't very useful. Its result and argument types match, unlike fft.
 
-{--------------------------------------------------------------------
-    Specialized FFT instances.
---------------------------------------------------------------------}
+-- * Specialized FFT instances.
 
 -- I put the specific instances here in order to avoid an import loop between
 -- the LPow and RPow modules. I'd still like to find an elegant FFT that maps f
@@ -260,9 +250,7 @@ twiddles :: f (f C)
 -- (<.>) :: (Foldable f, Applicative f, Num a) => f a -> f a -> a
 -- u <.> v = sum (liftA2 (*) u v)
 
-{--------------------------------------------------------------------
-    Simple, quadratic DFT (for specification & testing)
---------------------------------------------------------------------}
+-- * Simple, quadratic DFT (for specification & testing)
 
 -- Adapted from Dave's definition
 dftL :: RealFloat a => Unop [Complex a]
@@ -271,9 +259,7 @@ dftL xs = [ sum [ x * ok^n | x <- xs | n <- [0 :: Int ..] ]
  where
    om = omega (length xs)
 
-{--------------------------------------------------------------------
-    Tests
---------------------------------------------------------------------}
+-- * Tests
 
 -- > powers 2 :: LTree N2 Int
 -- B (B (L ((1 :# 2) :# (4 :# 8))))
@@ -364,9 +350,7 @@ dftIsDftL = toList . dft =~= dftL . toList
 --           f (Complex a) -> ([Complex a], [Complex a])
 -- dftDft xs = (toList . dft $ xs, dftL . toList $ xs)
 
-{--------------------------------------------------------------------
-    Properties to test
---------------------------------------------------------------------}
+-- * Properties to test
 
 transposeTwiddleCommutes :: (ASZ g, Traversable g, ASZ f, (ApproxEq (f (g C))))
                          => g (f C) -> Bool

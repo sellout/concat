@@ -246,9 +246,7 @@ instance HasRep ((g G.:.: f) p) where
 
 -- TODO: Can I *replace* HasRep with Generic?
 
-{--------------------------------------------------------------------
-    Utilities
---------------------------------------------------------------------}
+-- * Utilities
 
 inAbst :: (HasRep p, HasRep q) =>
           (Rep p -> Rep q) -> (p -> q)
@@ -274,9 +272,7 @@ inRepr2 :: (HasRep p, HasRep q, HasRep r) =>
 inRepr2 = inRepr <~ abst
 {-# INLINE inRepr2 #-}
 
-{--------------------------------------------------------------------
-    Unlifted types
---------------------------------------------------------------------}
+-- * Unlifted types
 
 #if 0
 -- Represent unboxed types as boxed counterparts.

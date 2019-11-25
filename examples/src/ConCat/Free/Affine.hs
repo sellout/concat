@@ -97,9 +97,7 @@ instance ProductCat (Affine s) where
 
 -- instance Num s => UnitCat (Affine s)
 
-{--------------------------------------------------------------------
-    Move elsewhere
---------------------------------------------------------------------}
+-- * Move elsewhere
 
 add :: forall s a. (HasV s a, Zip (V s a), Num s) => a -> a -> a
 add = onV2 @s (V.^+^)

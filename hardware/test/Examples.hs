@@ -91,9 +91,7 @@ main = sequence_
   -- , runCirc "fft-rb3" $ ccc $ fft @(RBin N3) @Double
   ]
 
-{--------------------------------------------------------------------
-    Testing utilities
---------------------------------------------------------------------}
+-- * Testing utilities
 
 runVerilog' :: (GenBuses a, GenBuses b) => String -> (a -> b) -> IO ()
 runVerilog' _ _ = error "runVerilog' called directly"

@@ -65,9 +65,7 @@ import ConCat.Free.LinearRow (L)
 import ConCat.Free.VectorSpace (V)
 import GHC.Generics ((:*:))
 
-{--------------------------------------------------------------------
-    Changes
---------------------------------------------------------------------}
+-- * Changes
 
 -- Delta for "Atomic" (all-or-nothing) values.
 -- Nothing for no change, and Just a for new value a.
@@ -196,9 +194,7 @@ instance HasDelta a => Additive (Del a) where
   (^+^) = inAbst2 ((@+) @a)
   zero = abst (zeroD @a)
 
-{--------------------------------------------------------------------
-    Change transformations
---------------------------------------------------------------------}
+-- * Change transformations
 
 infixr 1 -#>
 newtype a -#> b = DelX { unDelX :: Del a -+> Del b }
@@ -339,9 +335,7 @@ instance {-# overlapping #-} (Num s, Additive s, Atomic s) => NumCat Inc s where
   {-# INLINE powIC #-}
 
 
-{--------------------------------------------------------------------
-    "Differentiation" interface
---------------------------------------------------------------------}
+-- * "Differentiation" interface
 
 andInc :: forall a b . (a -> b) -> (a -> b :* (Delta a -> Delta b))
 andInc f = (result.second) (inRepr.repr.repr) (repr (A.toCcc @Inc f))

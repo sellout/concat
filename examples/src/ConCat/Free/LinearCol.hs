@@ -42,9 +42,7 @@ import ConCat.Free.VectorSpace
 import qualified ConCat.Category as C
 import ConCat.AltCat
 
-{--------------------------------------------------------------------
-    Linear maps
---------------------------------------------------------------------}
+-- * Linear maps
 
 -- Linear map from a s to b s
 infixr 1 :-*
@@ -71,9 +69,7 @@ zeroL = unComp1 zeroV
 scaleL :: (Diagonal a, Num s) => s -> (a :-* a) s
 scaleL = diag 0
 
-{--------------------------------------------------------------------
-    Other operations
---------------------------------------------------------------------}
+-- * Other operations
 
 ---- Category
 
@@ -117,9 +113,7 @@ inrL = (zeroV :*:) <$> idL
 joinL :: (a :-* c) s -> (b :-* c) s -> (a :*: b :-* c) s
 joinL = (:*:)
 
-{--------------------------------------------------------------------
-    Category
---------------------------------------------------------------------}
+-- * Category
 
 newtype L s a b = L ((V s a :-* V s b) s)
 
@@ -302,9 +296,7 @@ negateLM = scale (-1)
 
 #if 0
 
-{--------------------------------------------------------------------
-    Functors
---------------------------------------------------------------------}
+-- * Functors
 
 data Lapply s
 
@@ -316,9 +308,7 @@ instance FunctorC (Linear s) (->) (L s) where fmapC = linear
 
 #endif
 
-{--------------------------------------------------------------------
-    CCC conversion
---------------------------------------------------------------------}
+-- * CCC conversion
 
 lmap :: forall s a b. (a -> b) -> L s a b
 lmap _ = oops "lmap called"

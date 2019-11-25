@@ -446,9 +446,7 @@ pair = curry id <+ okProd @k @a @b
 "toCcc' fmap" toCcc' fmap = fmap
  #-}
 
-{--------------------------------------------------------------------
-    Automatic uncurrying
---------------------------------------------------------------------}
+-- * Automatic uncurrying
 
 -- Note: I'm not using yet. I think it needs to go before ccc.
 -- Alternatively, generalize from (->) to ClosedCat.
@@ -538,9 +536,7 @@ unCcc f = unCcc' (conceal f)
 -- unCcc f = unCcc' f  -- Try doing without reveal/conceal
 {-# INLINE unCcc #-}
 
-{--------------------------------------------------------------------
-    Rewrite rules
---------------------------------------------------------------------}
+-- * Rewrite rules
 
 id2 :: forall k a b. (MonoidalPCat k, Ok2 k a b) => (a :* b) `k` (a :* b)
 id2 = id <+ okProd @k @a @b
@@ -805,9 +801,7 @@ coco' = (undefined, (coerceC \\ trans @(CoerceCat k) @a @b @c))
 -- lassocP' :: (a,(b,c)) `k` ((a,b),c)
 -- lassocP' = ccc (\ (a,(b,c)) -> ((a,b),c))
 
-{--------------------------------------------------------------------
-    Some orphan instances
---------------------------------------------------------------------}
+-- * Some orphan instances
 
 -- For some (->) instances, we'll want to use late-inlining synonyms
 
@@ -1168,9 +1162,7 @@ diag z o =
 -- See notes from 2017-10-15.
 -- TODO: remove and test, now that we're translating (==) early (via Catify).
 
-{--------------------------------------------------------------------
-    
---------------------------------------------------------------------}
+-- *
 
 unitIf :: forall k. (TerminalCat k, BoolCat k) => IfT k (Unit k)
 unitIf = it
@@ -1248,9 +1240,7 @@ repIf = abstC @k @a @r . ifC . second (twiceP reprC)
 == abstC . ifC . second (twiceP reprC)
 #endif
 
-{--------------------------------------------------------------------
-    Misc utilities
---------------------------------------------------------------------}
+-- * Misc utilities
 
 -- TODO: Finish moving utilities from Category to here
 
