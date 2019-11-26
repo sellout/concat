@@ -139,7 +139,6 @@ import ConCat.AltCat
 import qualified ConCat.Rep
 import ConCat.Rebox () -- necessary for reboxing rules to fire
 import ConCat.Orphans ()
-import ConCat.Nat
 import ConCat.Shaped
 -- import ConCat.Scan
 -- import ConCat.FFT
