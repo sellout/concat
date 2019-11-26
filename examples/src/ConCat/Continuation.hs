@@ -127,7 +127,7 @@ need :: h ((a `k` r) -> (h a `k` r))
 
 f :: a `k` h a
 
-f' ::  (a `k` r) -> (h a `k` r)
+f' :: (a `k` r) -> (h a `k` r)
 
 joinPF :: (IxCoproductPCat k h, Ok2 k a b) => h (b `k` a) -> (h b `k` a)
 

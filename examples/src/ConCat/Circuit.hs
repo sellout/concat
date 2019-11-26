@@ -183,9 +183,7 @@ import qualified ConCat.Category
 import ConCat.AltCat  -- for AbsTy
 -- import ConCat.AltCat (Uncurriable(..),funIf,repIf,unitIf,prodIf,Finite)
 
-{--------------------------------------------------------------------
-    Buses
---------------------------------------------------------------------}
+-- * Buses
 
 -- Component (primitive) type
 data Ty = Void | Unit | Bool | Int | Integer | Float | Double
@@ -256,9 +254,7 @@ newSource ::  Ty -> Template a b -> [Source] -> Int -> CircuitM Source
 newSource t templ ins o = -- trace "newSource" $
                          (\ b -> Source b templ ins) <$> newBus t o
 
-{--------------------------------------------------------------------
-    Buses representing a given type
---------------------------------------------------------------------}
+-- ** Buses representing a given type
 
 -- | Typed aggregate of buses. @'Buses' a@ carries a value of type @a@.
 -- 'AbstB' is for isomorphic forms. Note: b must not have one of the standard
@@ -361,7 +357,7 @@ type GS a = (GenBuses a, Show a)
 
 genBus :: (Source -> Buses a) -> Ty
        -> Template u v -> [Source] -> BusesM (Buses a)
-genBus wrap t templ ins = seq (show t) $  -- * [Note seq]
+genBus wrap t templ ins = seq (show t) $  --  * [Note seq]
                           -- seq t $
                           -- trace ("genBus " ++ show t) $
                           do o <- M.get
@@ -534,12 +530,10 @@ convertB a            = mkConvertB a
 
 -- Make a ConvertB if source and target types differ; otherwise id
 mkConvertB :: forall a b. Ok2 (:>) a b => Buses a -> Buses b
-mkConvertB a -- | Just Refl <- eqT @a @b = a
+mkConvertB a --  | Just Refl <- eqT @a @b = a
              | otherwise              = ConvertB a
 
-{--------------------------------------------------------------------
-    The circuit monad
---------------------------------------------------------------------}
+-- * The circuit monad
 
 type PrimName = String
 
@@ -677,9 +671,7 @@ constName = show
 #endif
 
 
-{--------------------------------------------------------------------
-    Circuit category
---------------------------------------------------------------------}
+-- * Circuit category
 
 infixl 1 :>, :+>
 
@@ -896,9 +888,7 @@ instance CoproductPCat (:>) where
   jamP   = namedC "jamP"
   -- swapPS = swapP
 
-{--------------------------------------------------------------------
-    Misc
---------------------------------------------------------------------}
+-- * Misc
 
 instance (Ok (:>) a, IfCat (:>) b) => IfCat (:>) (a -> b) where
   ifC = funIf
@@ -938,9 +928,7 @@ instance ClosedCat (:>) where
 
 instance TerminalCat (:>)
 
-{--------------------------------------------------------------------
-    Indexed co/products
---------------------------------------------------------------------}
+-- * Indexed co/products
 
 instance OkIxProd (:>) G.U1   where okIxProd = Entail (Sub Dict)
 instance OkIxProd (:>) G.Par1 where okIxProd = Entail (Sub Dict)
@@ -997,9 +985,7 @@ crossFB fs = fmap IxProdB . transpose . zap fs . unIxProdB
 
 
 
-{--------------------------------------------------------------------
-    Ad hoc Functor-level operations, to be removed
---------------------------------------------------------------------}
+-- * Ad hoc Functor-level operations, to be removed
 
 instance OkFunctor (:>) G.U1   where okFunctor = Entail (Sub Dict)
 instance OkFunctor (:>) G.Par1 where okFunctor = Entail (Sub Dict)
@@ -1783,9 +1769,7 @@ instance FiniteCat (:>) where
                [UnsafeFiniteS x]  -> sourceB x
                _                  -> nothingA
 
-{--------------------------------------------------------------------
-    Running
---------------------------------------------------------------------}
+-- * Running
 
 instance (GenBuses a, Ok2 (:>) a b) => Show (a :> b) where
   -- show = show . mkGraph -- runC
@@ -1839,9 +1823,7 @@ mkGraph' :: Ok2 (:>) a b => (a :> b) -> IdSupply -> (Graph,IdSupply)
 mkGraph' g n = uuGraph' (unitize g) n
 
 
-{--------------------------------------------------------------------
-    Visualize circuit as dot graph
---------------------------------------------------------------------}
+-- * Visualize circuit as dot graph
 
 -- I could use the language-dot API, but it's easier not to.
 -- TODO: Revisit this choice if the string manipulation gets complicated.
@@ -2248,9 +2230,7 @@ segmentedDotString = intercalate "\"+\"" . divvy
 
 #endif
 
-{--------------------------------------------------------------------
-    Type-specific support
---------------------------------------------------------------------}
+-- * Type-specific support
 
 -- GenBuses needed for data types appearing the external interfaces (and hence
 -- not removed during compilation).

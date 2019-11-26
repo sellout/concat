@@ -118,9 +118,7 @@ outGV name attrs circ =
 
 #if 0
 
-{--------------------------------------------------------------------
-    State machines
---------------------------------------------------------------------}
+-- * State machines
 
 goM :: Okay (a -> b) => String -> Mealy a b -> IO ()
 goM name = goM' name []

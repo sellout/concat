@@ -52,9 +52,7 @@ import ConCat.Misc (typeR)
 import ConCat.Misc (Yes1)
 #endif
 
-{--------------------------------------------------------------------
-    Untyped S-expression
---------------------------------------------------------------------}
+-- * Untyped S-expression
 
 type DocTree = Tree PDoc
 
@@ -81,9 +79,7 @@ appt :: String -> [DocTree] -> DocTree
 appt = Node . const . text
 -- appt s ts = Node (const (text s)) ts
 
-{--------------------------------------------------------------------
-    Phantom-typed S-expression
---------------------------------------------------------------------}
+-- * Phantom-typed S-expression
 
 newtype Syn a b = Syn DocTree
 
@@ -512,9 +508,7 @@ instance RepresentableCat Syn g where
   INLINER(indexC)
   INLINER(tabulateC)
 
-{--------------------------------------------------------------------
-    Pretty-printing utilities
---------------------------------------------------------------------}
+-- * Pretty-printing utilities
 
 type Prec   = Rational
 type Fixity = (Prec,Assoc)

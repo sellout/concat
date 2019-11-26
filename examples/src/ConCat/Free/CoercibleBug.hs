@@ -33,9 +33,7 @@ newtype L a b = L (V b (V a R))
 bar :: L a b -> V b (V a R)
 bar = coerce
 
-{--------------------------------------------------------------------
-    Bug demo
---------------------------------------------------------------------}
+-- * Bug demo
 
 -- A rejected type specialization of bar with a ~ (R,R), b ~ (Par1 R,R)
 foo :: L (R,R) (Par1 R,R) -> V (Par1 R,R) (V (R,R) R)

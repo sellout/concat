@@ -40,10 +40,7 @@ import GHC.TypeLits
 
 import Control.Newtype.Generics
 
-{--------------------------------------------------------------------
-    Type abbreviations
--------------------------------------------------------------------
--}
+-- * Type abbreviations
 
 infixr 8 :^
 infixl 7 :*
@@ -55,9 +52,7 @@ type (:*)  = (,)
 type (:+)  = Either
 type (:=>) = (->)
 
-{--------------------------------------------------------------------
-    Helpers for GHC.Generics
---------------------------------------------------------------------}
+-- * Helpers for GHC.Generics
 
 -- | Operate inside a Generic1
 inGeneric1 :: (Generic1 f, Generic1 g) => (Rep1 f a -> Rep1 g b) -> (f a -> g b)
@@ -94,9 +89,7 @@ absurdF = \ case
 
 #if 0
 
-{--------------------------------------------------------------------
-    Evaluation
---------------------------------------------------------------------}
+-- * Evaluation
 
 -- class Evalable e where
 --   type ValT e
@@ -112,9 +105,7 @@ class Evalable p where eval :: p a -> a
 
 #endif
 
-{--------------------------------------------------------------------
-    Other
---------------------------------------------------------------------}
+-- * Other
 
 type Unop   a = a -> a
 type Binop  a = a -> Unop a
@@ -182,9 +173,7 @@ cond :: a -> a -> Bool -> a
 cond t e i = if i then t else e
 {-# INLINE cond #-}  -- later INLINE?
 
-{--------------------------------------------------------------------
-    Type level computations
---------------------------------------------------------------------}
+-- * Type level computations
 
 infixr 3 &&
 
@@ -321,9 +310,7 @@ int :: forall n. KnownNat n => Int
 int = fromIntegral (nat @n)
 {-# INLINE int #-}
 
-{--------------------------------------------------------------------
-    Newtype
---------------------------------------------------------------------}
+-- * Newtype
 
 -- See <https://github.com/jcristovao/newtype-generics/pull/5>
 
@@ -361,9 +348,7 @@ exNew2 :: (Newtype p, Newtype q, Newtype r) =>
 exNew2 = exNew <~ pack
 {-# INLINE exNew2 #-}
 
-{--------------------------------------------------------------------
-    Constraint shorthands
---------------------------------------------------------------------}
+-- * Constraint shorthands
 
 #if 1
 -- Experiment. Smaller Core?

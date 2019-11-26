@@ -73,9 +73,7 @@ lscanTraversable :: Traversable f => forall a. Monoid a => f a -> f a :* a
 lscanTraversable = lscanT mappend mempty
 {-# INLINABLE lscanTraversable #-}
 
-{--------------------------------------------------------------------
-    Monoid specializations
---------------------------------------------------------------------}
+-- * Monoid specializations
 
 -- Left-scan via a 'Newtype'
 lscanAla :: forall n o f. (Newtype n, o ~ O n, LScan f, Monoid n)
@@ -115,9 +113,7 @@ powers = lproducts . point
 iota :: (LScan f, Pointed f, Num a) => f a :* a
 iota = multiples 1
 
-{--------------------------------------------------------------------
-    Work and depth
---------------------------------------------------------------------}
+-- * Work and depth
 
 -- class Monoid o => MappendStats o where
 --   mappendWork, mappendDepth :: Int
@@ -127,9 +123,7 @@ iota = multiples 1
 -- instance Num a => MappendStats (Sum     a)
 -- instance Num a => MappendStats (Product a)
 
-{--------------------------------------------------------------------
-    Generic support
---------------------------------------------------------------------}
+-- * Generic support
 
 instance LScan V1 where
   lscan = absurdF

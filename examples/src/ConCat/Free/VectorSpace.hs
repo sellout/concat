@@ -45,9 +45,7 @@ import ConCat.Rep
 -- import ConCat.Category (UT(..),Constrained(..),FunctorC(..))
 import ConCat.AltCat (OpCon(..),Sat,type (|-)(..),fmapC)
 
-{--------------------------------------------------------------------
-    Vector spaces
---------------------------------------------------------------------}
+-- * Vector spaces
 
 infixl 7 *^, <.>, >.<
 infixl 6 ^+^, ^-^
@@ -185,9 +183,7 @@ sumV :: (Functor m, Foldable m, Zeroable n, Zip n, Num a) => m (n a) -> n a
 sumV = repr . fold . fmap SumV
 {-# INLINE sumV #-}
 
-{--------------------------------------------------------------------
-    Conversion
---------------------------------------------------------------------}
+-- * Conversion
 
 type RepHasV s a = (HasRep a, HasV s (Rep a), V s a ~ V s (Rep a))
 
@@ -394,9 +390,7 @@ instance FunctorC (VFun s) (Constrained (HasV s) (->)) (UT s) where
 
 #if 0
 
-{--------------------------------------------------------------------
-    Coercible
---------------------------------------------------------------------}
+-- * Coercible
 
 -- I don't think I need this stuff.
 
@@ -428,6 +422,4 @@ CoerceHasV(s,Two s,s :* s)
 
 #endif
 
-{--------------------------------------------------------------------
-    Utilities
---------------------------------------------------------------------}
+-- * Utilities

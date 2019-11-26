@@ -57,9 +57,7 @@ AbsTyImports
 
 -- TODO: generalize from Num to Semiring
 
-{--------------------------------------------------------------------
-    Linear maps
---------------------------------------------------------------------}
+-- * Linear maps
 
 -- Linear map from a s to b s
 infixr 1 :-*
@@ -87,9 +85,7 @@ zeroL = unComp1 zeroV
 scaleL :: (Diagonal a, Num s) => s -> (a :-* a) s
 scaleL = diag 0
 
-{--------------------------------------------------------------------
-    Other operations
---------------------------------------------------------------------}
+-- * Other operations
 
 ---- Category
 
@@ -161,9 +157,7 @@ joinL = zipWith (:*:)
 jamL :: (Diagonal a, Zip a, Num s) => ((a :*: a) :-* a) s
 jamL = idL `joinL` idL
 
-{--------------------------------------------------------------------
-    Category
---------------------------------------------------------------------}
+-- * Category
 
 newtype L s a b = L ((V s a :-* V s b) s)
 -- data L s a b = L ((V s a :-* V s b) s)
@@ -363,9 +357,7 @@ negateLM = scalarMul (-1)
 
 #if 0
 
-{--------------------------------------------------------------------
-    Functors
---------------------------------------------------------------------}
+-- * Functors
 
 data Lapply s
 
@@ -377,9 +369,7 @@ instance FunctorC (Linear s) (->) (L s) where fmapC = linear
 
 #endif
 
-{--------------------------------------------------------------------
-    CCC conversion
---------------------------------------------------------------------}
+-- * CCC conversion
 
 lmap :: forall s a b. (a -> b) -> L s a b
 lmap _ = oops "lmap called"
@@ -387,9 +377,7 @@ lmap _ = oops "lmap called"
 {-# RULES "lmap" forall h. lmap h = toCcc h #-}
 {-# ANN lmap (PseudoFun 1) #-}
 
-{--------------------------------------------------------------------
-   Some specializations 
---------------------------------------------------------------------}
+-- * Some specializations 
 
 #if 0
 

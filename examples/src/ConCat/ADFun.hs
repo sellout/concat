@@ -77,9 +77,7 @@ curryD (D (unfork -> (f,f'))) =
 -- No ClosedCat D instance
 #endif
 
-{--------------------------------------------------------------------
-    Differentiation interface
---------------------------------------------------------------------}
+-- * Differentiation interface
 
 andDerF :: forall a b . (a -> b) -> (a -> b :* (a -> b))
 andDerF f = unMkD (toCcc @D f)
@@ -129,9 +127,7 @@ gradF f = dualV . derF f
 
 #if 1
 
-{--------------------------------------------------------------------
-    Conversion to linear map. Replace HasL in LinearRow and LinearCol
---------------------------------------------------------------------}
+-- * Conversion to linear map. Replace HasL in LinearRow and LinearCol
 
 linear1 :: (Representable f, Eq (Rep f), Num s)
         => (f s -> s) -> f s
@@ -148,9 +144,7 @@ linearN h = linear1 <$> distribute h
 -- distribute h :: g (f s -> s)
 -- linear1 <$> distribute h :: g (f s)
 
-{--------------------------------------------------------------------
-    Alternative definitions using Representable
---------------------------------------------------------------------}
+-- * Alternative definitions using Representable
 
 type RepresentableV s a = (HasV s a, Representable (V s a))
 type RepresentableVE s a = (RepresentableV s a, Eq (Rep (V s a)))
