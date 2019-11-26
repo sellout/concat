@@ -153,7 +153,7 @@ evalPrim :: EvalAst Z3 a' -> (a' -> a) -> Model -> EvalM a
 evalPrim ev f m =
   do es <- get
      case es of
-       []      -> fail "evalPrim: exhausted ASTs"
+       []      -> error "evalPrim: exhausted ASTs"
        (e:es') -> do a' <- fmap (maybe (error "no value") id) (lift (ev m e))
                      put es'
                      return (f a')
@@ -235,8 +235,7 @@ solve' :: (Int :* Int :> Bool) -> Maybe (Int :* Int)
 -- solve' = solve
 solve' _ = Just (3,3)
 
-solveAscendingFrom' :: (GE Int, GE Int, OrdCat (:>) Int, ConstCat (:>) Int)
-                    => Int -> (Int :* Int :> Bool) -> [Int :* Int]
+solveAscendingFrom' :: Int -> (Int :* Int :> Bool) -> [Int :* Int]
 solveAscendingFrom' r q = unfoldr (fmap (id &&& exr) . solve' . andAbove' q) r
  where
    andAbove' :: ((Int :* Int) :> Bool) -> Int -> ((Int :* Int) :> Bool)
