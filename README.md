@@ -94,17 +94,17 @@ The current options:
 
 Working:
 
-*   Circuit graphs
-*   Automatic differentiation
-*   GLSL for graphics
-*   Interval analysis
-*   Incremental computation
-*   SMT (satisfy modulo theories), with John Wiegley
+*   [Circuit graphs](./examples/src/ConCat/Circuit.hs)
+*   [Automatic differentiation](./examples/src/ConCat/AD.hs)
+*   [GLSL](./graphics/src/ConCat/Graphics/GLSL.hs) for graphics
+*   [Interval analysis](./examples/src/ConCat/Interval.hs)
+*   [Incremental computation](./examples/src/ConCat/Incremental.hs)
+*   [SMT](./examples/src/ConCat/SMT.hs) (satisfy modulo theories), with John Wiegley
 
 In progress:
 
-*   Polynomials
-*   Demand analysis for strictness.
+*   [Polynomials](./examples/src/ConCat/Polynomial.hs)
+*   [Demand analysis for strictness](./examples/src/ConCat/Demand.hs)
 *   Functions with some special cases like constant, linear, polynomial, as well as the general case
 
 Others:
