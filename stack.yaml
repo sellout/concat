@@ -28,4 +28,4 @@ extra-deps:
 
   - language-glsl-0.3.0@sha256:85c1e7bf2cf5d6e604b7a2899c27e2935033425944db200798e57849e64d4c81,1636
 
-resolver: lts-14.15
+resolver: lts-14.16
