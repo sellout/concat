@@ -175,9 +175,7 @@ genericIso = G.from :<-> G.to
 generic1Iso :: G.Generic1 f => (f <--> G.Rep1 f)
 generic1Iso = G.from1 :<-> G.to1
 
-{--------------------------------------------------------------------
-    Experiment
---------------------------------------------------------------------}
+-- * Experiment
 
 infixr 8 ^^^
 class (Category k, OkExp k) => Closed k where
@@ -222,9 +220,7 @@ p' ^^^ q' :: (d :=> b) `k` (c :=> a)
 
 #endif
 
-{--------------------------------------------------------------------
-    Generic isomorphism-based homomorphisms
---------------------------------------------------------------------}
+-- * Generic isomorphism-based homomorphisms
 
 -- | Natural isomorphism
 infix 0 <-->

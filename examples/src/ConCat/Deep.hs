@@ -38,9 +38,7 @@ import ConCat.AltCat  (Additive1(..),(<+))
 -- import ConCat.Orphans (fstF, sndF)
 import ConCat.RAD     (gradR)
 
-{--------------------------------------------------------------------
-    Simple linear algebra
---------------------------------------------------------------------}
+-- * Simple linear algebra
 
 -- | Generalized matrix
 infixr 1 --*
@@ -141,9 +139,7 @@ distSqr u v = normSqr (u ^-^ v)
 
 -- The normSqr and distSqr definitions rely on Num instances on functions.
 
-{--------------------------------------------------------------------
-    Learning
---------------------------------------------------------------------}
+-- * Learning
 
 relus :: (Functor f, Ord a, Num a) => Unop (f a)
 relus = fmap (max 0)
@@ -190,9 +186,7 @@ infixr 9 @.
 -- Using q :*: p instead of p :*: q avoids the need for parens when combining
 -- several, while giving (@.) the same fixity as (.).
 
-{--------------------------------------------------------------------
-    SGD interface
---------------------------------------------------------------------}
+-- * SGD interface
 
 -- Single SGD step, from one parameter estimation to the next
 step :: forall s p a b.
@@ -235,9 +229,7 @@ trainNTimes :: ( Foldable b, Zip b, Zip p
 trainNTimes = \ n rate net ps prs -> take (n+1) $ iterate (steps net rate prs) ps
 {-# INLINE trainNTimes #-}
 
-{--------------------------------------------------------------------
-    Temp
---------------------------------------------------------------------}
+-- * Temp
 
 err1 :: (R -> R) -> R :* R -> R
 err1 h (a,b) = sqr (b - h a)
@@ -247,9 +239,7 @@ err1Grad :: (p -> R -> R) -> R :* R -> Unop p
 err1Grad h sample = gradR (\ a -> err1 (h a) sample)
 {-# INLINE err1Grad #-}
 
-{--------------------------------------------------------------------
-    Examples
---------------------------------------------------------------------}
+-- * Examples
 
 infixr 1 -->
 type (a --> b) s = a s -> b s

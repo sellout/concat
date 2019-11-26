@@ -33,9 +33,7 @@ import OccurAnal (occurAnalyseExpr)
 import FamInstEnv (emptyFamInstEnvs)
 
 
-{--------------------------------------------------------------------
-    Simplification
---------------------------------------------------------------------}
+-- * Simplification
 
 -- We can't use simplifyExpr from SimplCore, because it doesn't inline.
 

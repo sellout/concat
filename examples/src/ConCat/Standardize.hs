@@ -141,9 +141,7 @@ instance (HasStandard a, RealFracCat (->) (Standard a) (Standard b))
   ceilingC  = StdFun ceilingC
   truncateC = StdFun truncateC
 
-{--------------------------------------------------------------------
-    CCC interface
---------------------------------------------------------------------}
+-- * CCC interface
 
 standardize :: (HasStandard a, HasStandard b) => (a -> b) -> (Standard a -> Standard b)
 standardize = toStd <~ unStd
@@ -151,9 +149,7 @@ standardize = toStd <~ unStd
 -- standardize (ccc -> StdFun f') = f'
 -- standardize f = f' where StdFun f' = ccc f
 
-{--------------------------------------------------------------------
-    Instances
---------------------------------------------------------------------}
+-- * Instances
 
 -- TODO: merge into Rep
 

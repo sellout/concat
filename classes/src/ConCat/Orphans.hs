@@ -49,10 +49,7 @@ import ConCat.Misc ((:*),(:+),inNew2) -- ,inNew
 #if 0
 -- In keys-3.12 (2018-01-28)
 
-{--------------------------------------------------------------------
-    GHC.Generics and keys
--------------------------------------------------------------------
--}
+-- * GHC.Generics and keys
 
 -- Key
 
@@ -184,10 +181,7 @@ instance (Adjustable g, Adjustable f) => Adjustable (g :.: f) where
 #if 0
 -- No longer needed with pointed-5.0.1 (2018-01-22)
 
-{--------------------------------------------------------------------
-    GHC.Generics and pointed
--------------------------------------------------------------------
--}
+-- * GHC.Generics and pointed
 
 instance Pointed U1 where
   point = const U1
@@ -224,10 +218,7 @@ instance Copointed (Cofree f) where
 
 #endif
 
-{--------------------------------------------------------------------
-    Control.Newtype and keys
--------------------------------------------------------------------
--}
+-- * Control.Newtype and keys
 
 instance Newtype (Par1 t) where
   type O (Par1 t) = t
@@ -260,10 +251,7 @@ eitherF f _ (L1 a) = f a
 eitherF _ g (R1 b) = g b
 
 #if 0
-{--------------------------------------------------------------------
-    Data.Stream
--------------------------------------------------------------------
--}
+-- * Data.Stream
 
 instance Pointed Stream where point   = pure
 instance Zip     Stream where zipWith = liftA2
@@ -273,10 +261,7 @@ instance Foldable Stream where
   foldMap f ~(Cons a as) = f a `mappend` foldMap f as
 #endif
 
-{--------------------------------------------------------------------
-    Pretty
--------------------------------------------------------------------
--}
+-- * Pretty
 
 instance Pretty (U1 a) where
   pPrintPrec _ _ U1 = text "U1"
@@ -300,19 +285,13 @@ app l p str a =
 appPrec :: Rational
 appPrec = 10
 
-{--------------------------------------------------------------------
-    Distributive
--------------------------------------------------------------------
--}
+-- * Distributive
 
 #if 0
 
 -- In adjunctions-4.4
 
-{--------------------------------------------------------------------
-    Representable
--------------------------------------------------------------------
--}
+-- * Representable
 
 instance Representable U1 where
   type Rep U1 = Void
@@ -343,10 +322,7 @@ instance (Representable g, Representable f) => Representable (g :.: f) where
 
 #endif
 
-{--------------------------------------------------------------------
-    Monoids
--------------------------------------------------------------------
--}
+-- * Monoids
 
 -- instance Zip Sum where zipWith f (Sum a) (Sum b) = Sum (f a b)
 -- instance Zip Product where zipWith f (Product a) (Product b) = Product (f a b)
@@ -355,10 +331,7 @@ instance Zip Sum     where zipWith = inNew2
 instance Zip Product where zipWith = inNew2
 
 
-{--------------------------------------------------------------------
-    Vector (Sized)
--------------------------------------------------------------------
--}
+-- * Vector (Sized)
 
 type instance Key (Vector n) = Finite n
 
@@ -411,9 +384,7 @@ pointV = V.replicate
 {-# INLINE [0] pointV #-}
 #endif
 
-{--------------------------------------------------------------------
-    Foldable for functions
---------------------------------------------------------------------}
+-- * Foldable for functions
 
 instance Foldable ((->) Void) where
   foldMap _ _ = mempty

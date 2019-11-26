@@ -115,9 +115,7 @@ constExpr t      = error ("ConCat.SMT.constExpr: unexpected literal type: " ++ s
 mkNeq :: MonadZ3 z3 => E -> E -> z3 E
 mkNeq a b = mkNot =<< mkEq a b
 
-{--------------------------------------------------------------------
-    Adapted from z3cat
---------------------------------------------------------------------}
+-- * Adapted from z3cat
 
 genVars :: Ty -> Z3 [E]
 genVars = (fmap.fmap) toList go
@@ -176,9 +174,7 @@ instance (EvalE a, EvalE b, EvalE c, EvalE d) => EvalE (a,b,c,d)
 
 -- Note: the () and (a,b) cases suggest using ReaderT m
 
-{--------------------------------------------------------------------
-    Constrained optimization via iterated satisfaction
---------------------------------------------------------------------}
+-- * Constrained optimization via iterated satisfaction
 
 -- Convert constrained optimization into a predicate for solving.
 predValToPred :: Eq r => (a -> Bool :* r) -> (a :* r -> Bool)
@@ -247,9 +243,7 @@ solveAscendingFrom' r q = unfoldr (fmap (id &&& exr) . solve' . andAbove' q) r
    andAbove' f lower = andC . (greaterThan . (exr &&& const lower) &&& f)
 
 
-{--------------------------------------------------------------------
-    Copied from GLSL. Move to Circuit.
---------------------------------------------------------------------}
+-- * Copied from GLSL. Move to Circuit.
 
 -- Extract input, middle, output components. 
 

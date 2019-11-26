@@ -65,9 +65,7 @@ import ConCat.AltCat
 import ConCat.Isomorphism
 import ConCat.Known
 
-{----------------------------------------------------------------------
-   Some useful isomorphisms.
-----------------------------------------------------------------------}
+-- * Some useful isomorphisms.
 
 -- TODO: reverse the sense of finU1, finPar1, finSum and finProd
 
@@ -251,9 +249,7 @@ vecComp :: forall m n. KnownNat2 m n
 
 vecComp = reindex finProd \\ knownMul @m @n
 
-{----------------------------------------------------------------------
-   A class of types with known finite cardinalities.
-----------------------------------------------------------------------}
+-- * A class of types with known finite cardinalities.
 
 type KnownCard a = KnownNat (Card a)
 
@@ -308,9 +304,7 @@ instance (HasFin' a, HasFin' b) => HasFin (a :* b) where
 --   fin = finExp . (exFin :<-> inFin)
 --   {-# INLINE fin #-}
 
-{----------------------------------------------------------------------
-  Domain-typed "arrays"
-----------------------------------------------------------------------}
+-- * Domain-typed "arrays"
 
 type VC a = Vector (Card a)
 
@@ -379,9 +373,7 @@ instance HasFin' a => Representable (Arr a) where
 (!) = index
 {-# INLINE (!) #-}
 
-{--------------------------------------------------------------------
-    
---------------------------------------------------------------------}
+-- * 
 
 -- vecU1 :: Vector 0 <--> U1
 -- vecPar1 :: Vector 1 <--> Par1
@@ -636,9 +628,7 @@ reindexFinProd = coerceIso
 
 -- foo = coerce
 
-{--------------------------------------------------------------------
-    Splitting
---------------------------------------------------------------------}
+-- * Splitting
 
 chunk :: forall m n a. KnownNat2 m n => Vector (m * n) a -> Finite m -> Vector n a
 chunk mn i = tabulate (index mn . curry toFin i) \\ knownMul @m @n
@@ -686,9 +676,7 @@ arrSplitProd :: KnownCard2 a b => Arr (a :* b) c -> Arr a (Arr b c)
 arrSplitProd = pack . fmap pack . vecSplitProd . unpack
 {-# INLINE arrSplitProd #-}
 
-{--------------------------------------------------------------------
-    Folds
---------------------------------------------------------------------}
+-- * Folds
 
 #if 0
 
@@ -849,9 +837,7 @@ unArr = dom toFin . index . unpack
 -- reindex h = inv repIso . dom h . repIso
 
 
-{--------------------------------------------------------------------
-    Try "flattened functors" instead
---------------------------------------------------------------------}
+-- * Try "flattened functors" instead
 
 type KnownFlat f = KnownCard (Rep f)
 

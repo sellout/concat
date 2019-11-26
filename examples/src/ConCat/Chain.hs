@@ -115,9 +115,7 @@ instance (OkProd k, NumCat k a) => NumCat (Chain k) a where
 
 -- TODO: Many more instances
 
-{--------------------------------------------------------------------
-    Miscellany
---------------------------------------------------------------------}
+-- * Miscellany
 
 data Exists2 k = forall a b. Exists2 (a `k` b)
 

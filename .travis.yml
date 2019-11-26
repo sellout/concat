@@ -30,3 +30,5 @@ script:
 - nix-shell --run "$STACK build --no-run-tests :misc-examples :graphics-examples :gold-tests --flag concat-examples:smt"
 - nix-shell --run "$STACK test :hardware-examples"
 - nix-shell --run "$STACK test :gold-tests || $ALLOW_GOLD_TEST_FAILURES"
+# concat-inline breaks haddock, so we enumerate the other packages
+- nix-shell --run "$STACK haddock --no-haddock-deps concat-known concat-satisfy concat-classes concat-plugin concat-examples concat-graphics concat-hardware"
