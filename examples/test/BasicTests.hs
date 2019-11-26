@@ -27,7 +27,6 @@ import           ConCat.Incremental
 import           ConCat.Interval
 import           ConCat.Misc ((:*), (:+), R, C, Unop, Binop, magSqr, sqr, unzip)
 import           ConCat.Miscellany hiding (runSynCirc,runSynCircDers)
-import           ConCat.Nat
 import           ConCat.Orphans ()
 import           ConCat.RAD
 import           ConCat.Rebox ()

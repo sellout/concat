@@ -24,40 +24,6 @@ data Nat = Z | S Nat
 type Z = 'Z
 type S = 'S
 
-infixl 6 +
-
--- | Sum of type-level numbers
-type family (a :: Nat) + (b :: Nat) :: Nat where
-  a +  Z  = a
-  a + S b = S (a + b)
-
-infixl 6 -
-
--- Experiment:
--- | Difference of type-level numbers
-type family a - b :: Nat where
-  n   - Z   = n
-  S n - S m = n - m
-
-infixl 7 *
-
--- | Product of type-level numbers
-type family a * b :: Nat where
-  a *  Z  = a
-  a * S b = a + (a * b)
-
---     Nested type family application
---       in the type family application: a + (a * b)
---     (Use UndecidableInstances to permit this)
---     In the type instance declaration for ‘*’
-
-infixr 8 ^
-
--- | Exponentiating type-level numbers
-type family a ^ b :: Nat where
-  a ^   Z = S Z
-  a ^ S b = a * (a ^ b)
-
 type N0  = Z
 
 -- Generated code
