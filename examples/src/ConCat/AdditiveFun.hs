@@ -157,9 +157,7 @@ instance RepCat (->) a r => RepCat (-+>) a r where
   Abst(reprC)
   Abst(abstC)
 
-{--------------------------------------------------------------------
-    Indexed products and coproducts
---------------------------------------------------------------------}
+-- * Indexed products and coproducts
 
 instance Additive1 h => OkIxProd (-+>) h where
   okIxProd :: forall a. Ok' (-+>) a |- Ok' (-+>) (h a)
@@ -202,9 +200,7 @@ instance OkAdd (-+>) where okAdd = Entail (Sub Dict)
 
 #if 0
 
-{--------------------------------------------------------------------
-    NumCat etc
---------------------------------------------------------------------}
+-- * NumCat etc
 
 instance (Num s, Additive s) => NumCat (-+>) s where
   Abst(addC)
@@ -225,9 +221,7 @@ instance Additive a => IfCat (-+>) a where
 
 #endif
 
-{--------------------------------------------------------------------
-    Functor-level operations
---------------------------------------------------------------------}
+-- * Functor-level operations
 
 -- instance (Functor h, Additive1 h) => Strong (-+>) h where
 --   strength = abst strength
@@ -263,9 +257,7 @@ instance (Pointed h, Additive1 h, Additive a) => PointedCat (-+>) h a where
 instance (Summable h, Additive a) => AddCat (-+>) h a where
   Abst(sumAC)
 
-{--------------------------------------------------------------------
-    CCC interface
---------------------------------------------------------------------}
+-- * CCC interface
 
 addFun :: (a -> b) -> (a -> b)
 addFun f = repr (toCcc @(-+>) f)

@@ -29,9 +29,7 @@ import ConCat.Syntactic (Syn)
 import ConCat.Chain (Chain)
 #endif
 
-{--------------------------------------------------------------------
-    Stack machines
---------------------------------------------------------------------}
+-- * Stack machines
 
 data Stack k a b =
   Stack { unStack :: forall z. Ok k z => (a :* z) `k` (b :* z) }
@@ -234,9 +232,7 @@ instance (MonoidalPCat k, NumCat k a) => NumCat (Stack k) a where
 -- and `okCoprod` entailments. Probably wait until the spurious recompilation
 -- issue is fixed and I'm on a current GHC.
 
-{--------------------------------------------------------------------
-    Examples
---------------------------------------------------------------------}
+-- * Examples
 
 #ifdef EXAMPLES
 

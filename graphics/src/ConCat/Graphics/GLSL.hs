@@ -268,9 +268,7 @@ unsnoc as = (mid,o) where (mid,[o]) = splitAt' 1 as
 splitAt' :: Int -> [a] -> ([a], [a])
 splitAt' n as = splitAt (length as - n) as
 
-{--------------------------------------------------------------------
-    GLSL syntax utilities
---------------------------------------------------------------------}
+-- * GLSL syntax utilities
 
 -- For experiments. Makes it easy to see syntax representations.
 _parse :: P a -> String -> Either ParseError a
@@ -301,9 +299,7 @@ funDef resultTy name params statements =
 funcall :: String -> [Expr] -> Expr
 funcall fun args = FunctionCall (FuncId fun) (Params args)
 
-{--------------------------------------------------------------------
-    Shader representation for conversion to JSON and String
---------------------------------------------------------------------}
+-- * Shader representation for conversion to JSON and String
 
 data Widget = Time | Slider String (R,R) R
 

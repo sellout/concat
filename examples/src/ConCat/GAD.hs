@@ -164,9 +164,7 @@ instance CoproductPCat k => CoproductPCat (GD k) where
 
 #endif
 
-{--------------------------------------------------------------------
-    Indexed products and coproducts
---------------------------------------------------------------------}
+-- * Indexed products and coproducts
 
 #if 0
 class (Category k, OkIxProd k h) => IxProductCat k h where
@@ -211,9 +209,7 @@ instance (IxProductCat (->) h, IxProductCat k h, Zip h) => IxProductCat (GD k) h
 --   -- plusPF (fmap repr -> fs) = D (second plusPF . unzip . plusPF fs)
 --   -- {-# INLINE plusPF #-}
 
-{--------------------------------------------------------------------
-    NumCat etc
---------------------------------------------------------------------}
+-- * NumCat etc
 
 instance {-# overlappable #-} (LinearCat k s, Additive s, Num s) => NumCat (GD k) s where
   addC    = linearD addC jamP
@@ -271,9 +267,7 @@ instance (ProductCat k, Ord a) => MinMaxCat (GD k) a where
 
 -- TODO: IfCat. Maybe make ifC :: (a :* a) `k` (Bool -> a), which is linear.
 
-{--------------------------------------------------------------------
-    Discrete
---------------------------------------------------------------------}
+-- * Discrete
 
 -- Experiment
 
@@ -314,9 +308,7 @@ instance (ProductCat k, ConstCat k Bool, Ok2 k Bool a) => IfCat (GD k) a where
         <+ okProd @k @Bool @(a :* a)
         <+ okProd @k @a @a
 
-{--------------------------------------------------------------------
-    Functor-level operations
---------------------------------------------------------------------}
+-- * Functor-level operations
 
 instance (IxProductCat k h, FunctorCat k h) => FunctorCat (GD k) h where
   fmapC = inAbst (\ q -> second crossF . unzipC . fmapC q)
@@ -375,9 +367,7 @@ instance (RepresentableCat (->) g, RepresentableCat k g)
   Linear(indexC)
   Linear(tabulateC)
 
-{--------------------------------------------------------------------
-    Other instances
---------------------------------------------------------------------}
+-- * Other instances
 
 notDef :: String -> a
 notDef meth = error (meth ++ " on D not defined")
@@ -396,9 +386,7 @@ instance ( CoerceCat (->) a b
   Linear(coerceC)
 #endif
 
-{--------------------------------------------------------------------
-    Differentiation interface
---------------------------------------------------------------------}
+-- * Differentiation interface
 
 -- | A function combined with its derivative
 andDeriv :: forall k a b . (a -> b) -> (a -> b :* (a `k` b))

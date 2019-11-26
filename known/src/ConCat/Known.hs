@@ -36,9 +36,7 @@ nm = Sub Dict
 KNOW(knownAdd,+)
 KNOW(knownMul,GHC.TypeLits.*)
 
-{--------------------------------------------------------------------
-    Experiment
---------------------------------------------------------------------}
+-- * Experiment
 
 #ifdef KNOWABLE
 

@@ -148,9 +148,7 @@ choose = unCcc (Choice @con (Arg (flip ($))))
 
 #endif
 
-{--------------------------------------------------------------------
-    Category class instances
---------------------------------------------------------------------}
+-- * Category class instances
 
 op1C :: forall con a b c d. CartCon con
      => ((a -> b) -> (c -> d))
@@ -335,9 +333,7 @@ instance (Representable f, CartCon con) => RepresentableCat (Choice con) f where
   tabulateC = exactly tabulateC
   indexC    = exactly indexC
 
-{--------------------------------------------------------------------
-    Maybe move somewhere else
---------------------------------------------------------------------}
+-- * Maybe move somewhere else
 
 -- A function from a constrained, existentially hidden parameter. Optimizes for
 -- the parameter being () in order to avoid accumulating products of units.

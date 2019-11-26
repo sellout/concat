@@ -47,9 +47,7 @@ genericSize = size @(Rep1 f)
 -- sizeAF :: forall f. (Applicative f, Foldable f) => Int
 -- sizeAF = sum (pure 1 :: f Int)
 
-{--------------------------------------------------------------------
-    Generics
---------------------------------------------------------------------}
+-- * Generics
 
 instance Sized U1 where
   size = 0

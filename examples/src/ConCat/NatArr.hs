@@ -52,9 +52,7 @@ import ConCat.AltCat (Arr,array,arrAt,at,natV,divModC)
 import ConCat.Rep (HasRep(..))
 AbsTyImports
 
-{--------------------------------------------------------------------
-    Domain-typed arrays
---------------------------------------------------------------------}
+-- * Domain-typed arrays
 
 -- Type cardinality.
 class (Enum a, KnownNat (Card a)) => HasCard a where
@@ -164,9 +162,7 @@ instance ( HasCard a, HasCard b, Enum a, Enum b
   sum = getSum . foldMap Sum  -- experiment
   {-# INLINE sum #-}
 
-{--------------------------------------------------------------------
-    Enum
---------------------------------------------------------------------}
+-- * Enum
 
 -- Custom Enum class using *total* definitions of toEnum.
 

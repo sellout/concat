@@ -44,9 +44,7 @@ import ConCat.Free.LinearRow (L,linear)
 -- Differentiable functions with transposed/dualized derivatives.
 type RAD = GD (Dual (-+>))
 
-{--------------------------------------------------------------------
-    Differentiation interface
---------------------------------------------------------------------}
+-- * Differentiation interface
 
 -- | Add a dual/reverse derivative
 andDerR :: forall a b. (a -> b) -> (a -> b :* (b -> a))

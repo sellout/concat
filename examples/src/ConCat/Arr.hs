@@ -52,9 +52,7 @@ import ConCat.AltCat (Arr,array,arrAt,at,divC,modC)
 
 AbsTyImports
 
-{--------------------------------------------------------------------
-    Foldable functions
---------------------------------------------------------------------}
+-- * Foldable functions
 
 instance Foldable ((->) Void) where
   foldMap _f _h = mempty
@@ -289,9 +287,7 @@ foldMap f  :: (Arr a :.: Arr b) z -> m
 -- lsums :: (Traversable f, Num a) => f a -> f a :* a
 -- lsums = (fmap getSum *** getSum) . lscan . fmap Sum
 
-{--------------------------------------------------------------------
-    Function wrappers with memoization
---------------------------------------------------------------------}
+-- * Function wrappers with memoization
 
 infixr 1 :->
 
